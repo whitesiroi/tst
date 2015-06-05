@@ -1,0 +1,16 @@
+<%= form_for @user_info do |f| %>
+  <div class="field">
+    email: <%= @user_info.email %>
+    <%= f.hidden_field :email %>
+  </div>
+  <div class="field">
+    password: <%= @user_info.password %>
+    <%= f.hidden_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Back!', name: 'back' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'create!' %>
+  </div>
+<% end %>
