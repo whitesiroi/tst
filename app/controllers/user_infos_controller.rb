@@ -2,8 +2,10 @@ class UserInfosController < ApplicationController
   before_action :set_user_info, only: [:show, :edit, :update, :destroy]
 
   def confirm
-    @user_info = UserInfo.new(user_info_params) # <=POSTされたパラメータを取得
-    render :new if @user_info.invalid? # <=バリデーションチェックNGなら戻す
+    @user_info = UserInfo.new(user_info_params)
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   # GET /user_infos
@@ -37,7 +39,9 @@ class UserInfosController < ApplicationController
     if params[:back]
       render :new
     elsif @user_info.save
-      redirect_to @user_info, notice: 'user_info was successfully created.'
+      respond_to do |format|
+       format.js { }
+      end
     else
       render :new
     end
